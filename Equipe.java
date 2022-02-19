@@ -68,14 +68,14 @@ public class Equipe implements java.io.Serializable, Comparable<Equipe> {
 
     @Override
     public String toString() {
-        return nom  + "\t" + getMatchsJoues() +
-                "\t" + nbMatchsGagnes +
-                "\t" + nbMatchsPerdus +
+        return nom  + (nom.length() > 7 ? "\t" : "\t\t") + getMatchsJoues() +
+                "\t    "+ nbMatchsGagnes +
+                "\t\t" + nbMatchsPerdus +
                 "\t" + nbMatchsNuls +
                 "\t" + butsPour +
                 "\t" + butsContre +
-                "\t" + getPoints() +
-                "\t" + getDif();
+                "\t  " + getPoints() +
+                "\t\t" + getDif();
     }
 
     public Integer getPoints() {
@@ -88,7 +88,11 @@ public class Equipe implements java.io.Serializable, Comparable<Equipe> {
 
     @Override
     public int compareTo(Equipe o) {
-        return o.getPoints().compareTo(getPoints());
+        if(o.getPoints() == getPoints()){
+            return o.getDif().compareTo(getDif());
+        }else{
+            return o.getPoints().compareTo(getPoints());
+        }
     }
 
     public Integer getMatchsJoues() {
